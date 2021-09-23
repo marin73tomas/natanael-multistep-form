@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Metropolis';
+  src: local('Metropolis'), url('./fonts/Metropolis-Regular.otf') format('otf');
+  font-display: 'swap';
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Metropolis';
+  src: local('Metropolis'), url('./fonts/Metropolis-Light.otf') format('otf');
+  font-display: 'swap';
+  font-weight: 300;
+}
