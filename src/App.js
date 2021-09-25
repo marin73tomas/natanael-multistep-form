@@ -16,12 +16,10 @@ const useStyles = makeStyles(styles);
 const App = () => {
   const classes = useStyles();
   return (
-    <React.Fragment className={classes.root}>
+    <div className={classes.root}>
       <CssBaseline />
-      <Container maxWidth="sm">
         <MultiStepForm classes={classes} />
-      </Container>
-    </React.Fragment>
+    </div>
   );
 };
 export default App;

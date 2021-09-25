@@ -8,11 +8,11 @@ import { CardActionArea } from "@mui/material";
 import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 
-
 const TwoChoicesForm = ({
   currentStepNumber,
   firstChoiceData,
   secondChoiceData,
+  classes
 }) => {
   const dispatch = useDispatch();
   const handleClick = (event, value) => {
@@ -38,12 +38,11 @@ const TwoChoicesForm = ({
     <Box sx={{ flexGrow: 1 }}>
       <Grid
         container
-        spacing={2}
         direction="row"
         justifyContent="space-between"
         alignItems="center"
       >
-        <Grid item md={6}>
+        <Grid item md={6} className={classes.choiceItem}>
           <Card
             className="step-card"
             sx={{ maxWidth: 345 }}
@@ -67,7 +66,7 @@ const TwoChoicesForm = ({
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} className={classes.choiceItem}>
           {" "}
           <Card
             className="step-card"
