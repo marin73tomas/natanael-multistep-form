@@ -1,4 +1,4 @@
-const BLUE_COLOR = "#0061F2"
+const BLUE_COLOR = "#0061F2";
 
 const style = (theme) => ({
   root: {
@@ -7,7 +7,7 @@ const style = (theme) => ({
     lineHeight: "1.5",
     boxSizing: "border-box",
     fontFamily:
-      "Metropolis, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
+      "Metropolis, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important",
     backgroundColor: BLUE_COLOR,
     height: "100%",
 
@@ -55,33 +55,46 @@ const style = (theme) => ({
   },
 
   btn: {
-    fontWeight: "400",
-    padding: "0.875rem 1.125rem",
-    fontSize: "0.875rem",
-    borderRadius: "0.35rem",
+    fontWeight: "400 !important",
+    padding: "0.875rem 1.125rem!important ",
+    fontSize: "0.875rem !important ",
+    borderRadius: "0.35rem !important ",
     transition:
-      "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+      "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important",
   },
   btnPrimary: {
-    color: "#fff",
-    backgroundColor: "#0061f2",
-    borderColor: "#0061f2",
+    color: "#fff !important",
+    backgroundColor: "#0061f2 !important",
+    borderColor: "#0061f2 !important",
     "&focus": {
-      color: "#fff",
-      backgroundColor: "#0052ce",
-      borderColor: "#004ec2",
-      boxShadow: "0 0 0 0.25rem rgba(38, 121, 244, 0.5)",
+      color: "#fff !important",
+      backgroundColor: "#0052ce !important",
+      borderColor: "#004ec2 !important",
+      boxShadow: "0 0 0 0.25rem rgba(38, 121, 244, 0.5) !important",
     },
   },
   h3: {
     fontSize: "1.3rem !important",
     lineHeight: "1.2 !important",
-    color: "#363d47 !important",
+    color: "rgb(54, 61, 71) !important",
+    fontWeight: "300 !important"
   },
   regularForm: {
+    marginTop: "40px",
+    "& > div": {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+    },
+    "& > div > div": {
+      marginBottom: "1rem !important",
+    },
     "& label": {
+      display: "block",
       fontSize: "0.875em",
       marginBottom: "0.25rem !important",
+      color: "rgb(105, 112, 122)",
     },
     "& input": {
       color: "#69707a",
@@ -100,19 +113,24 @@ const style = (theme) => ({
       MozAppearance: "none",
       appearance: "none",
       borderRadius: "0.35rem",
+      color: "rgb(105, 112, 122)",
       transition:
         "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-      "&focus": {
-        color: "#69707a",
-        backgroundColor: "#fff",
-        borderColor: "transparent",
-        outline: "0",
-        boxShadow: "0 0 0 0.25rem rgba(0, 97, 242, 0.25)",
-      },
     },
-  },
-  formNameContainer: {
-    width: "50%",
+    "& input:hover": {
+      outline: "none",
+    },
+    "&.Mui-selected": {
+      outline: "none",
+    },
+    "& input:focus": {
+      outline: "none !important",
+      color: "#69707a",
+      backgroundColor: "#fff",
+      borderColor: "transparent",
+      outline: "0",
+      boxShadow: "0 0 0 0.25rem rgba(0, 97, 242, 0.25)",
+    },
   },
   choiceItem: {
     display: "flex",
@@ -125,15 +143,25 @@ const style = (theme) => ({
     },
   },
   stepper: {
-    "& svg": { width: "30px !important", height: "30px !important" },
-    "& .MuiStepLabel-label .Mui-active": {
+    "& svg ": {
+      fill: "#8db1fa",
+      width: "30px !important",
+      height: "30px !important",
+    },
+    "& svg.Mui-active": {
+      fill: "#8fcaf9",
+    },
+    "& .MuiStepLabel-label.Mui-active": {
       color: "white !important",
-      fontWeight: "600",
-      marginTop: "5px",
     },
     "& .MuiStepLabel-label": {
       fontSize: "16px",
+      color: "#8db1fa !important",
+      marginTop: "5px",
     },
+  },
+  navigationBtn: {
+    color: "white !important",
   },
 });
 

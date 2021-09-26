@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 const TwoChoicesForm = ({
   currentStepNumber,
@@ -14,8 +15,19 @@ const TwoChoicesForm = ({
   secondChoiceData,
   classes
 }) => {
+
+  const [currentValue, setCurrentValue] = React.useState(undefined)
   const dispatch = useDispatch();
-  const handleClick = (event, value) => {
+  const values = useSelector((state) => state.values);
+  console.log(values, values.has(secondChoiceData.value));
+  if (values.has(firstChoiceData.value) || values.has(secondChoiceData.value))
+  {
+     dispatch({
+       type: "allowStep",
+       payload: { stepNumber: currentStepNumber + 1 },
+     });
+  }
+  const handleClick = (event) => {
     //console.log(event);
     const target = event.target;
 
@@ -30,10 +42,20 @@ const TwoChoicesForm = ({
 
     dispatch({
       type: "allowStep",
-      payload: { value, stepNumber: currentStepNumber + 1 },
+      payload: {  stepNumber: currentStepNumber + 1 },
+    });
+    dispatch({
+      type: "addValues",
+      payload: {
+        newValue: currentValue,
+        oldValue:
+          currentValue == firstChoiceData.value
+            ? secondChoiceData.value
+            : firstChoiceData.value,
+      },
     });
   };
-
+  console.log(values, values.has(firstChoiceData.value));
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -44,9 +66,14 @@ const TwoChoicesForm = ({
       >
         <Grid item md={6} className={classes.choiceItem}>
           <Card
-            className="step-card"
+            className={`step-card ${
+              values.has(firstChoiceData.value) ? "active" : ""
+            }`}
             sx={{ maxWidth: 345 }}
-            onClick={handleClick.bind(firstChoiceData.value)}
+            onClick={(e) => {
+              setCurrentValue(firstChoiceData.value);
+              handleClick(e);
+            }}
           >
             <CardActionArea>
               <CardMedia
@@ -69,9 +96,14 @@ const TwoChoicesForm = ({
         <Grid item md={6} className={classes.choiceItem}>
           {" "}
           <Card
-            className="step-card"
+            className={`step-card ${
+              values.has(secondChoiceData.value) && "active"
+            }`}
             sx={{ maxWidth: 345 }}
-            onClick={handleClick.bind(secondChoiceData.value)}
+            onClick={(e) => {
+              setCurrentValue(secondChoiceData.value);
+              handleClick(e);
+            }}
           >
             <CardActionArea>
               <CardMedia

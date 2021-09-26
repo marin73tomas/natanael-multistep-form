@@ -119,63 +119,67 @@ const MultiStepForm = ({ classes }) => {
   };
 
   return (
-    <Container maxWidth="md" style={{position: "relative"}}>
-   
-        {isError && (
-          <Fade in={true}>
-            <Alert
-              severity="error"
-              className={classes.error}
-              onClose={(event) => setError("")}
-              style={{ position: "absolute", top: "30px", width: "93%" }}
+    <Container maxWidth="md" style={{ position: "relative" }}>
+      {isError && (
+        <Fade in={true}>
+          <Alert
+            severity="error"
+            className={classes.error}
+            onClose={(event) => setError("")}
+            style={{ position: "fixed", top: "30px", zIndex: "999" }}
+          >
+            {isError}
+          </Alert>
+        </Fade>
+      )}
+      <Stepper activeStep={activeStep} className={classes.stepper}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Box sx={{ flex: "1 1 auto" }} />
+            <Button className={classes.navigationBtn} onClick={handleReset}>
+              Reset
+            </Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Button
+              className={classes.navigationBtn}
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
             >
-              {isError}
-            </Alert>
-          </Fade>
-        )}
-        <Stepper activeStep={activeStep} className= {classes.stepper}>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
+              Back
+            </Button>
+            <Box sx={{ flex: "1 1 auto" }} />
+            {activeStep === steps.length - 1 ? (
+              ""
+            ) : (
+              <Button className={classes.navigationBtn} onClick={handleNext}>
+                Next
               </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
-
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </Box>
-          </React.Fragment>
-        )}
-        <Card className={classes.formCard}>{renderStep()}</Card>
-
+            )}
+          </Box>
+        </React.Fragment>
+      )}
+      <Card className={classes.formCard}>{renderStep()}</Card>
     </Container>
   );
 };

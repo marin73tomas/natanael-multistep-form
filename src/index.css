@@ -1,7 +1,9 @@
 html, body, #root {
   height: 100%
 }
-
+.special-label{
+  display: none;
+}
 @font-face {
   font-family: 'Metropolis';
   src: local('Metropolis'), url('./fonts/Metropolis-Regular.otf') format('otf');
